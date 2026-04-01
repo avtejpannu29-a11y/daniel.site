@@ -15,6 +15,8 @@
     t.src=v;s=b.getElementsByTagName(e)[0];
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
+    
+    // Ensure this ID matches your Meta Events Manager exactly
     fbq('init', '3145497665621726'); 
     fbq('track', 'PageView');
     </script>
@@ -182,15 +184,16 @@
 
     <script>
     function handleJoin() {
-        // Meta Pixel Tracking: 1008713228482915
+        // 1. Fire the Lead/Subscribe event immediately
         if(typeof fbq !== 'undefined') {
-            fbq('track', 'Subscribe');
+            fbq('track', 'Lead'); // 'Lead' is often more reliable for TG joins than custom 'Subscribe'
+            console.log("Pixel Event Fired");
         }
         
-        // Redirect to new Telegram Link
+        // 2. Redirect after a short delay to allow Pixel to send data
         setTimeout(function() {
             window.location.href = "https://t.me/+Ol9rnkTMswg0Njc1";
-        }, 350);
+        }, 500); // Increased to 500ms for better reliability
     }
     </script>
 
